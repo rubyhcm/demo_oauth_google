@@ -24,7 +24,7 @@ class FriendsController < ApplicationController
     @friend = Friend.new(friend_params)
 
     respond_to do |format|
-      if @friend.save
+      if @friend.save!
         format.html { redirect_to @friend, notice: "Friend was successfully created." }
         format.json { render :show, status: :created, location: @friend }
       else
@@ -37,7 +37,7 @@ class FriendsController < ApplicationController
   # PATCH/PUT /friends/1 or /friends/1.json
   def update
     respond_to do |format|
-      if @friend.update(friend_params)
+      if @friend.update!(friend_params)
         format.html { redirect_to @friend, notice: "Friend was successfully updated." }
         format.json { render :show, status: :ok, location: @friend }
       else
@@ -49,7 +49,7 @@ class FriendsController < ApplicationController
 
   # DELETE /friends/1 or /friends/1.json
   def destroy
-    @friend.destroy
+    @friend.destroy!
     respond_to do |format|
       format.html { redirect_to friends_url, notice: "Friend was successfully destroyed." }
       format.json { head :no_content }
@@ -59,7 +59,7 @@ class FriendsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_friend
-      @friend = Friend.find(params[:id])
+      @friend = Friend.find_by!(id: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
