@@ -1,1 +1,1 @@
-# This repo to demo login with gmail
+# This repo is used to demo login with gmail
